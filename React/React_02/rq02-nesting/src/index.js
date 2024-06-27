@@ -1,14 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const title = React.createElement("h1", null, "Hello world!");
-const link = React.createElement("a", {href: "//react.dev"}, "read more");
+class Link extends React.Component {
+    render(){
+        return React.createElement(
+            "p",
+            null,
+            React.createElement(
+                "a",
+                {href: "//react.dev"},
+                "Read more about React"
+            )
+        );
+    }
+}
+const link1 = React.createElement(Link);
+const link2 = React.createElement(Link);
+const link3 = React.createElement(Link);
 
-// 실제 요소를 사용하지 않고 엘리먼트를 그룹화
 const group = React.createElement(
-    React.Fragment,null,title,link
+    React.Fragment,null, link1, link2, link3
 );
-
 const domElement = document.getElementById("root");
 ReactDOM.createRoot(domElement).render(group);
 
