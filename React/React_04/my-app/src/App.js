@@ -8,14 +8,32 @@ function App() {
     </main>
   );
 }
-const App = function() {
-  const EmptyMenu = () => {return <nav />};
+function Menu() {
   return (
-    <main>
-      <EmptyMenu />
-    </main>
+    <nav className="navbar">
+      <h1 className="title">TheMenuCompany</h1>
+      <ul className="menu">
+        <MenuItem label="Home" href="/" target="_self" />
+        <MenuItem label="About" href="/about/" target="_self" />
+        <MenuItem label="Blog" href="/blog" target="_blank" />
+      </ul>
+    </nav>
   );
 }
+function MenuItem({label, href, target}) {
+  return(
+    <li className="menu-item">
+      <a
+        className="menu-item"
+        href={href}
+        target={target}
+      >
+        {label}
+      </a>
+    </li>
+  );
+}
+/*
 const EmptyMenu = () => <nav />
 
 function Menu() {
@@ -30,6 +48,36 @@ function Menu() {
     </nav>
   );
 }
+function MenuItem(props) {
+  const {href, label} = props;
+  return (
+    <li className="menu-item">
+      <a className="menu-link" href={href}>
+        {label}
+      </a>
+    </li>
+  )
+}
+
+
+function MenuItem({href, label}) {
+  return (
+    <li className="menu-item">
+      <a className="menu-link" href={href}>
+        {label}
+      </a>
+    </li>
+  )
+}
+
+const App = function() {
+  const EmptyMenu = () => {return <nav />};
+  return (
+    <main>
+      <EmptyMenu />
+    </main>
+  );
+}
 
 function MenuItem(props) {
   return (
@@ -41,7 +89,7 @@ function MenuItem(props) {
   )
 }
 
-/*
+
 class App extends Component {
   render() {
     return (
