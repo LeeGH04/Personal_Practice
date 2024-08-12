@@ -13,6 +13,54 @@ function Menu() {
     <nav className="navbar">
       <h1 className="title">TheMenuCompany</h1>
       <ul className="menu">
+        <MenuItem label={"Home"} href="/" />
+        <MenuItem label={"About"} href="/about/" id="about-link" />
+        <MenuItem label={"Blog"} href="/blog/" target="_blank" id="blog-link" />
+      </ul>
+    </nav>
+  );
+}
+
+function MenuItem({label, href, ...rest}){
+  return (
+    <li className="menu-item">
+      <a className="menu-link" href={href} {...rest}>
+        {label}
+      </a>
+    </li>
+  );
+}
+/*
+
+function Menu() {
+  return (
+    <nav className="navbar">
+      <h1 className="title">TheMenuCompany</h1>
+      <ul className="menu">
+        <MenuItem label={"Home"} href="/" />
+        <MenuItem label={"About"} href="/about/" id="about-link" />
+        <MenuItem label={"Blog"} href="/blog/" target="_blank" id="blog-link" />
+      </ul>
+    </nav>
+  );
+}
+
+function MenuItem({label, href, target="_self", id=null}){
+  return (
+    <li className="menu-item">
+      <a className="menu-link" href={href} target={target} id={id}>
+        {label}
+      </a>
+    </li>
+  );
+}
+
+
+function Menu() {
+  return (
+    <nav className="navbar">
+      <h1 className="title">TheMenuCompany</h1>
+      <ul className="menu">
         <MenuItem label="Home" href="/" target="_self" />
         <MenuItem label="About" href="/about/" target="_self" />
         <MenuItem label="Blog" href="/blog" target="_blank" />
@@ -33,7 +81,7 @@ function MenuItem({label, href, target}) {
     </li>
   );
 }
-/*
+
 const EmptyMenu = () => <nav />
 
 function Menu() {
