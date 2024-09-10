@@ -1,7 +1,120 @@
 import { Component } from "react";
 
+function App() {
+  return (
+    <main>
+      <h1>Animals</h1>
+      <Gallery />
+    </main>
+  );
+}
+function Gallery() {
+  return (
+    <section style={{ display: "flex" }}>
+        <Image index="1003" title="Deer" />
+        <Image index="1020" title="Bear" />
+        <Image index="1024" title="Vulture" />
+        <Image index="1084" title="Walrus" />
+      </section>
+  );
+}
+class Image extends Component {
+  getImageSource() {
+    return(
+      `//picsum.photos/id/${this.props.index}/150/150/`
+    );
+  }
+  render() {
+    return(
+      <figure style={{margin: "5px"}}>
+        <img
+          src = {this.getImageSource()}
+          alt={this.props.title}
+        / >
+        <figcaption>
+          <h3>Species : {this.props.title}</h3>
+        </figcaption>    
+      </figure>
+    );
+  }
+}
+/*
+function Gallery() {
+  return (
+    <section style={{ display: "flex" }}>
+        <Image index="1003" title="Deer" />
+        <Image index="1020" title="Bear" />
+        <Image index="1024" title="Vulture" />
+        <Image index="1084" title="Walrus" />
+      </section>
+  );
+}
+
+function getImageSource(index) {
+  return `//picsum.photos/id/${index}/150/150/`;
+}
+function Image({index, title}) {
+  return (
+    <figure style={{margin: "5px"}}>
+      <img
+          src={getImageSource(index)}
+          alt={title}
+        />
+        <figcaption>
+          <h3>Species: {title}</h3>
+        </figcaption>
+    </figure>
+  );
+}
+
+/*
+function Gallery() {
+  return (
+    <section style={{ display: "flex" }}>
+        <Image index="1003" title="Deer" />
+        <Image index="1020" title="Bear" />
+        <Image index="1024" title="Vulture" />
+        <Image index="1084" title="Walrus" />
+      </section>
+  );
+}
+function getImageSource(index) {
+  return `//picsum.photos/id/${index}/150/150/`;
+}
+class Image extends Component {
+  render() {
+    return (
+      <figure style={{ margin: "5px" }}>
+        <img
+          src={getImageSource(this.props.index)}
+          alt={this.props.title}
+        />
+        <figcaption>
+          <h3>Species: {this.props.title}</h3>
+        </figcaption>
+      </figure>
+    );
+  }
+}
+
+function Image({index, title}) {
+  return (
+    <figure style={{margin: "5px"}}>
+      <img
+          src={`//picsum.photos/id/${index}/150/150/`}
+          alt={title}
+        />
+        <figcaption>
+          <h3>Species: {title}</h3>
+        </figcaption>
+    </figure>
+  );
+}
+
+
+
 class App extends Component {
-  reder() {
+  render() {
     return (
       <main>
         <h1>Animals</h1>
@@ -10,6 +123,7 @@ class App extends Component {
     );
   }
 }
+
 class Gallery extends Component {
   render() {
     return (
@@ -42,7 +156,7 @@ class Image extends Component {
 
 
 
-/*  //--------------------------------------------------------------
+ //--------------------------------------------------------------
 function App() {
   return (
     <main>
