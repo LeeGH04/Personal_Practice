@@ -18,6 +18,7 @@ function Gallery() {
       </section>
   );
 }
+/*
 class Image extends Component {
   getImageSource() {
     return(
