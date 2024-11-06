@@ -1,45 +1,129 @@
 import React, { useState } from "react";
 
-const   PLUS = (a,b) => a + b;
-const MINUS = (a,b) => a - b;
-const  MULRIPLY = (a,b) => a * b;
-
-function Calculator({a, b}) {
-    const [operator, setOperator] = useState(() => PLUS);
+function markDone(list, index) {
+    return list.map(
+        (item, i) => (i === index ? {...item, done: true}: item)
+    );
+}
+function TodoApplication({initialList}){
+    const [todos, setTodos] = useState(initialList);
+    const [hideDone, setHideDone] = useState(false);
+    const filteredTodos = hideDone
+    ? todos.filter(({done}) => !done)
+        : todos;
     return(
         <main>
-            <h1>Calculator</h1>
-            <button
-                onClick={() => setOperator(null)}
-            >
-                RESET
-            </button>
-            <button
-                onClick={() => setOperator(() => PLUS)}
-            >
-                PLUS
-            </button>
-            <button
-                onClick={() => setOperator(() => MINUS)}
-            >
-                MINUS
-            </button>
-            <button
-                onClick={() => setOperator(() => MULRIPLY)}
-            >
-                MULRIPLY
-            </button>
-            <p>
-                Result of applying operator to {a} and {b}:
-                <code>{operator ? operator(a, b) : 0}</code>
-            </p>
+            <div style={{display: "flex"}}>
+                <button onClick={() => setHideDone(false)}>
+                    show all
+                </button>
+                <button onClick={() => setHideDone(true)}>
+                    Hide done
+                </button>
+            </div>
+            {filteredTodos.map((todo, index) => (
+                <p key={todo.task}>
+                    {todo.done ? (
+                        <strike>{todo.task}</strike>
+                    ) : (
+                        <>
+                        {todo.task}
+                        <button onClick={() => setTodos((value) =>
+                        markDone(value,index)
+                        )}
+                                >
+                            x
+                        </button>
+                        </>
+                    )}
+                </p>
+            ))}
         </main>
     );
 }
 
 function App() {
-    return <Calculator a={7} b={4}/>
+    const items = [
+        {task: "Feed the plants", done: false, index: 0},
+        {task: "water", done: false, index: 1},
+        {task: "Clean", done: false, index: 2},
+    ];
+    return<TodoApplication initialList={items} />
 }
+
+// function TodoApplication({initalList}){
+//     const [todos, setTodos] = useState(initalList);
+//     return (
+//         <main>
+//             {todos.map((todo, index)=>(
+//                 <p key={todo}>
+//                     {todo}
+//                     <button
+//                         onClick={()=>{
+//                             setTodos((value)=>[
+//                                 ...value.slice(0, index),
+//                                 ...value.slice(index + 1),
+//                             ]);
+//                         }}
+//                     >
+//                         x
+//                     </button>
+//                 </p>
+//             ))}
+//         </main>
+//     );
+// }
+// function App(){
+//     const items = [
+//         "Feed the plants",
+//         "Water the dishes",
+//         "Clean the cat"
+//     ];
+//     return<TodoApplication initalList={items} />;
+// }
+
+
+
+// const   PLUS = (a,b) => a + b;
+// const MINUS = (a,b) => a - b;
+// const  MULTIPLY = (a,b) => a * b;
+//
+// function Calculator({a, b}) {
+//     const [operator, setOperator] = useState(() => PLUS);
+//     return(
+//         <main>
+//             <h1>Calculator</h1>
+//             <button
+//                 onClick={() => setOperator(null)}
+//             >
+//                 RESET
+//             </button>
+//             <button
+//                 onClick={() => setOperator(() => PLUS)}
+//             >
+//                 PLUS
+//             </button>
+//             <button
+//                 onClick={() => setOperator(() => MINUS)}
+//             >
+//                 MINUS
+//             </button>
+//             <button
+//                 onClick={() => setOperator(() => MULTIPLY)}
+//             >
+//                 MULTIPLY
+//             </button>
+//             <p>
+//                 Result of applying operator to {a} and {b}:
+//                 <code>{operator ? operator(a, b) : 0}</code>
+//             </p>
+//         </main>
+//     );
+// }
+//
+// function App() {
+//     return <Calculator a={7} b={4}/>
+// }
 
 // function Accordion() {
 //     const [isExpanded, setIsExpanded] = useState(false);
